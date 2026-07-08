@@ -1,0 +1,15 @@
+# secrets : ne jamais commiter
+.env
+*.key
+*_key*
+ANTHROPIC_API_KEY*
+
+# python
+venv/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# os
+.DS_Store

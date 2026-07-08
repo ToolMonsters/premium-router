@@ -1,0 +1,20 @@
+{
+  "task_type": "sales_reply_classification",
+  "output_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "category": {"type": "string", "enum": ["positive", "objection", "not_interested", "referral", "unclear"]},
+      "next_action": {"type": "string", "enum": ["reply", "notify_human", "follow_up_later", "archive"]},
+      "reason": {"type": "string"}
+    },
+    "required": ["category", "next_action", "reason"]
+  },
+  "decision_rules": [
+    {"rule": "Asks for pricing or a meeting -> positive", "examples": ["can you send pricing?"]},
+    {"rule": "Timing/budget concern without rejection -> objection", "examples": ["not a priority this quarter"]}
+  ],
+  "edge_cases": [
+    {"case": "short ambiguous reply ('ok', 'thanks')", "decision": "unclear", "next_action": "notify_human"}
+  ]
+}
